@@ -1,0 +1,8 @@
+{
+  "goerli": {
+    "BetFactory": {
+      "address": "0xf2E319e2869605525dFB48BbB02457BBD05109E5",
+      "startBlock": 10066784
+    }
+  }
+}

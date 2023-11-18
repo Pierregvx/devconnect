@@ -1,0 +1,63 @@
+[
+  { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "betAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "creator",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address[2]",
+            "name": "tokens",
+            "type": "address[2]"
+          },
+          { "internalType": "bool", "name": "isPrivate", "type": "bool" },
+          { "internalType": "uint256", "name": "startTime", "type": "uint256" },
+          { "internalType": "address", "name": "operator", "type": "address" }
+        ],
+        "indexed": false,
+        "internalType": "struct BetFactory.BetParams",
+        "name": "params",
+        "type": "tuple"
+      }
+    ],
+    "name": "BetCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address[2]",
+            "name": "tokens",
+            "type": "address[2]"
+          },
+          { "internalType": "bool", "name": "isPrivate", "type": "bool" },
+          { "internalType": "uint256", "name": "startTime", "type": "uint256" },
+          { "internalType": "address", "name": "operator", "type": "address" }
+        ],
+        "internalType": "struct BetFactory.BetParams",
+        "name": "_params",
+        "type": "tuple"
+      }
+    ],
+    "name": "createBet",
+    "outputs": [
+      { "internalType": "contract Bet", "name": "", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
