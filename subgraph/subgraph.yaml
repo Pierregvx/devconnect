@@ -6,7 +6,7 @@ dataSources:
     name: BetFactory
     network: goerli
     source:
-      address: "0xf2E319e2869605525dFB48BbB02457BBD05109E5"
+      address: "0x88b96d0c4a9cd4ddc78be3e73d721b0c9e3f9b24"
       abi: BetFactory
       startBlock: 10066784
     mapping:
@@ -19,7 +19,7 @@ dataSources:
         - name: BetFactory
           file: ./abis/BetFactory.json
       eventHandlers:
-        - event: BetCreated(indexed address,indexed address,(address[2],bool,uint256,address))
+        - event: BetCreated(indexed address,indexed address,(address[],bool,uint256,address))
           handler: handleBetCreated
       file: ./src/mapping.ts
 templates:
@@ -41,3 +41,9 @@ templates:
       eventHandlers:
         - event: BetPlaced(indexed address,indexed uint256,uint256)
           handler: handleBetPlaced
+        - event: WinnerDeclared(indexed uint256)
+          handler: handleWinnerDeclared
+        - event: Refund(indexed address,indexed uint256,uint256)
+          handler: handleRefund
+        - event: Withdraw(indexed address,indexed uint256,uint256)
+          handler: handleWithdraw

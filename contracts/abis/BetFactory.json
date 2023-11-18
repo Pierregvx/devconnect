@@ -22,9 +22,9 @@
       {
         "components": [
           {
-            "internalType": "address[2]",
+            "internalType": "address[]",
             "name": "tokens",
-            "type": "address[2]"
+            "type": "address[]"
           },
           {
             "internalType": "bool",
@@ -56,9 +56,9 @@
       {
         "components": [
           {
-            "internalType": "address[2]",
+            "internalType": "address[]",
             "name": "tokens",
-            "type": "address[2]"
+            "type": "address[]"
           },
           {
             "internalType": "bool",

@@ -6,7 +6,9 @@ type Deposit @entity {
 
 type Asset @entity {
   id: ID! #bet+id
+  bet: Bet!
   address: Bytes!
+  isWinner: Boolean!
   totalDeposited: BigInt!
   Deposits: [Deposit!]! @derivedFrom(field: "asset") 
 }
@@ -14,7 +16,7 @@ type Asset @entity {
 type Bet @entity {
   id: Bytes!
 
-  assets: [Asset!]!
+  assets: [Asset!]! @derivedFrom(field: "bet")
   creator: Bytes!
   operator: Bytes!
 

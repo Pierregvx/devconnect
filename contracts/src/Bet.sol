@@ -12,8 +12,8 @@ contract Bet {
     bool public isPrivate;
     uint256 public startTime;
 
-    address[2] public tokens;
-    uint256[2] public totalDeposits;
+    address[] public tokens;
+    uint256[] public totalDeposits;
     mapping (uint => mapping (address => uint256)) deposits;
 
     uint public winner;
@@ -38,7 +38,7 @@ contract Bet {
         _;
     }
 
-    constructor(address[2] memory _tokens, bool _isPrivate, uint256 _startTime, address _operator) {
+    constructor(address[] memory _tokens, bool _isPrivate, uint256 _startTime, address _operator) {
         tokens = _tokens;
         isPrivate = _isPrivate;
         startTime = _startTime;

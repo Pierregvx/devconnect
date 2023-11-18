@@ -6,7 +6,7 @@ import "./Bet.sol";
 contract BetFactory {
 
     struct BetParams {
-        address[2] tokens;
+        address[] tokens;
         bool isPrivate;
         uint256 startTime;
         address operator;

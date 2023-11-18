@@ -1,6 +1,6 @@
 import { BigInt } from "@graphprotocol/graph-ts"
 import { BetFactory, BetCreated } from "../generated/BetFactory/BetFactory"
-import { BetPlaced } from "../generated/templates/Bet/Bet"
+import { BetPlaced, Refund, WinnerDeclared, Withdraw } from "../generated/templates/BetTemplate/Bet"
 import { Asset, Bet, Deposit } from "../generated/schema"
 import { BetTemplate } from "../generated/templates"
 
@@ -12,18 +12,16 @@ export function handleBetCreated(event: BetCreated): void {
   bet.operator = event.params.params.operator;
   bet.isPrivate = event.params.params.isPrivate;
   bet.startTime = event.params.params.startTime;
-  bet.assets = [];
+  bet.save();
 
   for (let i = 0; i < event.params.params.tokens.length; i++) {
     const asset = new Asset(event.params.betAddress.toHexString() + "-" + i.toString());
     asset.address = event.params.params.tokens[i];
     asset.totalDeposited = BigInt.zero();
+    asset.bet = event.params.betAddress;
+    asset.isWinner = false;
     asset.save();
-    bet.assets.push(asset.id);
   }
-
-  bet.save();
-
 }
 
 export function handleBetPlaced(event: BetPlaced): void {
@@ -39,3 +37,16 @@ export function handleBetPlaced(event: BetPlaced): void {
   deposit.save();
 }
 
+export function handleWinnerDeclared(event: WinnerDeclared): void {
+  const asset = Asset.load(event.address.toHexString() + "-" + event.params.winner.toString());
+  asset!.isWinner = true;
+  asset!.save();
+} 
+
+export function handleRefund(event: Refund): void {
+
+}
+
+export function handleWithdraw(event: Withdraw): void {
+
+}

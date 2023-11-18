@@ -2,9 +2,9 @@
   {
     "inputs": [
       {
-        "internalType": "address[2]",
+        "internalType": "address[]",
         "name": "_tokens",
-        "type": "address[2]"
+        "type": "address[]"
       },
       {
         "internalType": "bool",
