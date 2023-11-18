@@ -12,13 +12,13 @@ contract BetFactory {
         address operator;
     }
 
-    event BetCreated(address indexed betAddress, address indexed creator);
+    event BetCreated(address indexed betAddress, address indexed creator, BetParams params);
 
     constructor() {}
 
     function createBet(BetParams memory _params) external returns (Bet) {
         Bet newBet = new Bet(_params.tokens, _params.isPrivate, _params.startTime, _params.operator);
-        emit BetCreated(address(newBet), msg.sender);
+        emit BetCreated(address(newBet), msg.sender, _params);
         return newBet;
     }
 }
