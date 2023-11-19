@@ -1,20 +1,12 @@
 import React from 'react';
+import { parseEther } from 'viem';
+import { useContractWrite, usePrepareContractWrite } from 'wagmi';
 interface ClientBetButtonProps {
     team: string;
     address: string;
     onBet: (team: string) => void;
   }
   
-  const ClientBetButton: React.FC<ClientBetButtonProps> = ({ team, address, onBet }) => {
-    return (
-      <button 
-        className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => onBet(address)}
-      >
-        Bet on {team}
-      </button>
-    );
-  };
   
 export interface BetProps {
   team1: string;
@@ -28,10 +20,34 @@ export interface BetProps {
 
 export const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, oddsTeam2, address1, address2 }) => {
 
-  const handleBet = (address: string) => {
-    // Handle betting logic here
-    //TODO INTERACT WITH CONTRACT
-  };
+  const { config } = usePrepareContractWrite({
+    address: 'address',
+    abi: [
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_tokenIndex",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "bet",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    functionName: 'mint',
+    value:parseEther('0'),
+    args: [parseEther('0'),parseEther('0.1')]
+
+  },)
+  const { write } = useContractWrite(config)
 
   return (
     <div className="p-4 border rounded shadow-md">
@@ -40,11 +56,11 @@ export const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, od
       <div className="flex justify-between items-center">
         <div>
           <span>Odds: {oddsTeam1}</span>
-          <ClientBetButton team={team1} address={address1} onBet={handleBet} />
+          <button disabled={!write} onClick={() => write?.()}/>
         </div>
         <div>
           <span>Odds: {oddsTeam2}</span>
-          <ClientBetButton team={team2} address={address2} onBet={handleBet} />
+          <button disabled={!write} onClick={() => write?.()}/>
         </div>
       </div>
     </div>
