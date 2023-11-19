@@ -6,9 +6,9 @@ dataSources:
     name: BetFactory
     network: goerli
     source:
-      address: "0xd5eC8CE45Da9a747eA522C0482a99044b779D09b"
+      address: "0x319a369fad9aec8fc736e49846d1b71059c9d1ef"
       abi: BetFactory
-      startBlock: 10066784
+      startBlock: 10068060
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

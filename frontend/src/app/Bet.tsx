@@ -21,7 +21,7 @@ export interface BetProps {
 export const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, oddsTeam2, address1, address2 }) => {
 
   const { config } = usePrepareContractWrite({
-    address: 'address',
+    address: '0x150a8db2cef3b6f6c90b062e97469826e4fce547',
     abi: [
       {
         "inputs": [
@@ -42,9 +42,9 @@ export const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, od
         "type": "function"
       }
     ],
-    functionName: 'mint',
+    functionName: 'bet',
     value:parseEther('0'),
-    args: [parseEther('0'),parseEther('0.1')]
+    args: [parseEther('0'),parseEther('42')]
 
   },)
   const { write } = useContractWrite(config)
@@ -56,11 +56,11 @@ export const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, od
       <div className="flex justify-between items-center">
         <div>
           <span>Odds: {oddsTeam1}</span>
-          <button disabled={!write} onClick={() => write?.()}/>
+          <button disabled={!write} onClick={() => write?.()}>Bet Team A</button>
         </div>
         <div>
           <span>Odds: {oddsTeam2}</span>
-          <button disabled={!write} onClick={() => write?.()}/>
+          <button disabled={!write} onClick={() => write?.()}>Bet Team B</button>
         </div>
       </div>
     </div>

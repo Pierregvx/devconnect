@@ -3,4 +3,4 @@ sources:
   - name: bet
     handler:
       graphql:
-        endpoint: http://localhost:8000/subgraphs/name/bet
+        endpoint: https://api.thegraph.com/subgraphs/name/gauthiermyr/bet-ethglobal
