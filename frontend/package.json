@@ -3,14 +3,18 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "graphclient build && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@graphprotocol/client-cli": "^3.0.0",
     "@web3modal/ethereum": "2.4.1",
     "@web3modal/react": "2.4.1",
+    "global": "^4.4.0",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "next": "^13.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

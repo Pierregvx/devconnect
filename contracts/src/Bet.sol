@@ -43,6 +43,7 @@ contract Bet {
         isPrivate = _isPrivate;
         startTime = _startTime;
         operator = _operator;
+        totalDeposits = new uint256[](2);
 
         winner = type(uint256).max;
     }

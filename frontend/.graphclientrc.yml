@@ -1,0 +1,6 @@
+# .graphclientrc.yml
+sources:
+  - name: bet
+    handler:
+      graphql:
+        endpoint: http://localhost:8000/subgraphs/name/bet

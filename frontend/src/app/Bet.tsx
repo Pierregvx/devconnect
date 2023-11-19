@@ -1,33 +1,36 @@
 import React from 'react';
 interface ClientBetButtonProps {
     team: string;
+    address: string;
     onBet: (team: string) => void;
   }
   
-  const ClientBetButton: React.FC<ClientBetButtonProps> = ({ team, onBet }) => {
+  const ClientBetButton: React.FC<ClientBetButtonProps> = ({ team, address, onBet }) => {
     return (
       <button 
         className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        // onClick={() => onBet(team)}
+        onClick={() => onBet(address)}
       >
         Bet on {team}
       </button>
     );
   };
   
-interface BetProps {
+export interface BetProps {
   team1: string;
   team2: string;
   matchDate: string;
   oddsTeam1: number;
   oddsTeam2: number;
+  address1: string;
+  address2: string;
 }
 
-const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, oddsTeam2 }) => {
+export const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, oddsTeam2, address1, address2 }) => {
 
-  const handleBet = (team: string) => {
+  const handleBet = (address: string) => {
     // Handle betting logic here
-    console.log(`Bet placed on ${team}`);
+    //TODO INTERACT WITH CONTRACT
   };
 
   return (
@@ -37,11 +40,11 @@ const Bet: React.FC<BetProps> = ({ team1, team2, matchDate, oddsTeam1, oddsTeam2
       <div className="flex justify-between items-center">
         <div>
           <span>Odds: {oddsTeam1}</span>
-          <ClientBetButton team={team1} onBet={handleBet} />
+          <ClientBetButton team={team1} address={address1} onBet={handleBet} />
         </div>
         <div>
           <span>Odds: {oddsTeam2}</span>
-          <ClientBetButton team={team1} onBet={handleBet} />
+          <ClientBetButton team={team2} address={address2} onBet={handleBet} />
         </div>
       </div>
     </div>

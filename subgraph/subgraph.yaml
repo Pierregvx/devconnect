@@ -6,7 +6,7 @@ dataSources:
     name: BetFactory
     network: goerli
     source:
-      address: "0x88b96d0c4a9cd4ddc78be3e73d721b0c9e3f9b24"
+      address: "0xd5eC8CE45Da9a747eA522C0482a99044b779D09b"
       abi: BetFactory
       startBlock: 10066784
     mapping:

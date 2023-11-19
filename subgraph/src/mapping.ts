@@ -26,15 +26,20 @@ export function handleBetCreated(event: BetCreated): void {
 
 export function handleBetPlaced(event: BetPlaced): void {
   const id = event.address.toHexString() + "-" + event.params.better.toHexString() + "-" + event.params.tokenIndex.toString();
+  const assetId = event.address.toHexString() + "-" + event.params.tokenIndex.toString();
   let deposit = Deposit.load(id);
   if (!deposit) {
     deposit = new Deposit(id);
     deposit.amount = event.params.amount;
-    deposit.asset = event.address.toHexString() + "-" + event.params.tokenIndex.toString();
+    deposit.asset = assetId;
   } else {
     deposit.amount = deposit.amount.plus(event.params.amount);
   }
   deposit.save();
+
+  const asset = Asset.load(assetId);
+  asset!.totalDeposited = asset!.totalDeposited.plus(event.params.amount);
+  asset!.save();
 }
 
 export function handleWinnerDeclared(event: WinnerDeclared): void {
